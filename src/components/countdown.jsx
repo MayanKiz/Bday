@@ -68,21 +68,14 @@ export default function Countdown() {
             <motion.div
               key={unit}
               className="bg-white rounded-3xl shadow-lg p-4 w-28 h-28 flex flex-col items-center justify-center border-2 border-pink-200 relative overflow-hidden"
-              style={{
-                backgroundImage: "url('/retouch_2025032401183147.jpg')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                color: "#fff",
-              }}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.05, rotate: [-1, 1, -1, 0] }}
             >
-              <div className="absolute inset-0 bg-black/50 rounded-3xl"></div>
-              <div className="text-3xl font-bold z-10">{value}</div>
-              <div className="text-sm capitalize z-10">{unit}</div>
-              <div className="mt-1 z-10">{icons[index % icons.length]}</div>
+              <div className="text-3xl font-bold text-purple-600">{value}</div>
+              <div className="text-sm text-pink-500 capitalize">{unit}</div>
+              <div className="mt-1">{icons[index % icons.length]}</div>
             </motion.div>
           ))
         ) : (
@@ -90,8 +83,26 @@ export default function Countdown() {
         )}
       </div>
 
+      {/* Profile DP Circle */}
       <motion.div
-        className="text-center max-w-md mx-auto bg-pink-50 p-4 rounded-3xl border-2 border-pink-100"
+        className="relative flex justify-center items-center mb-[-40px]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        <div className="w-32 h-32 rounded-full border-4 border-pink-300 shadow-lg overflow-hidden relative bg-white">
+          <img
+            src="/retouch_2025032401183147.jpg"
+            alt="Profile"
+            className="object-cover w-full h-full"
+          />
+          <div className="absolute inset-0 rounded-full ring-2 ring-pink-400 ring-offset-2"></div>
+        </div>
+      </motion.div>
+
+      {/* Dialog Box */}
+      <motion.div
+        className="text-center max-w-md mx-auto bg-pink-50 p-6 rounded-3xl border-2 border-pink-100 shadow-lg mt-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
