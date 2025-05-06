@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
@@ -24,11 +24,18 @@ function calculateTimeLeft() {
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
+  const audioRef = useRef(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
       const updated = calculateTimeLeft()
       setTimeLeft(updated)
+
+      // Play tick sound every second
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0
+        audioRef.current.play().catch(() => {})
+      }
 
       if (!updated || Object.keys(updated).length === 0) {
         clearInterval(timer)
@@ -47,7 +54,7 @@ export default function Countdown() {
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-200">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 p-4">
       <motion.h1
         className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 sm:min-h-11 mb-6"
         initial={{ scale: 0.95 }}
@@ -83,52 +90,44 @@ export default function Countdown() {
         )}
       </div>
 
-      {/* Profile DP Circle */}
+      {/* Premium Card */}
       <motion.div
-        className="relative flex justify-center items-center mb-[-40px]"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        className="relative max-w-sm w-full aspect-[4/3] bg-white rounded-3xl shadow-2xl border-4 border-pink-200 overflow-hidden"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <div className="w-32 h-32 rounded-full border-4 border-pink-300 shadow-lg overflow-hidden relative bg-white">
-          <img
-            src="/retouch_2025032401183147.jpg"
-            alt="Profile"
-            className="object-cover w-full h-full"
-          />
-          <div className="absolute inset-0 rounded-full ring-2 ring-pink-400 ring-offset-2"></div>
+        <img
+          src="/retouch_2025032401183147.jpg"
+          alt="Profile"
+          className="w-full h-2/3 object-cover"
+        />
+        <div className="p-4 flex flex-col justify-between h-1/3">
+          <p className="text-lg text-purple-700 text-center font-semibold">
+            Just a little more... A small gift for my favorite person❤️
+          </p>
+          <div className="flex justify-center space-x-2 mt-2">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-3 h-3 rounded-full bg-pink-400"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: i * 0.3,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
 
-      {/* Dialog Box */}
-      <motion.div
-        className="text-center max-w-md mx-auto bg-pink-50 p-6 rounded-3xl border-2 border-pink-100 shadow-lg mt-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-      >
-        <p className="text-lg text-purple-700 mb-4">
-          Just a little more... A small gift for my favorite person❤️
-        </p>
-
-        <div className="flex justify-center space-x-2">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-3 h-3 rounded-full bg-pink-400"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{
-                duration: 1,
-                repeat: Number.POSITIVE_INFINITY,
-                delay: i * 0.3,
-              }}
-            />
-          ))}
-        </div>
-      </motion.div>
+      {/* Tic-Tic Sound */}
+      <audio ref={audioRef} src="/tic.mp3" />
     </div>
   )
 }
