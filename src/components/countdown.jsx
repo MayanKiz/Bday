@@ -4,8 +4,11 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
-function calculateTimeLeft(targetDate) {
-  const difference = targetDate - new Date()
+// Fix kiya hua target date YAHAN hai
+const TARGET_DATE = new Date("2025-06-11T00:00:00")
+
+function calculateTimeLeft() {
+  const difference = TARGET_DATE - new Date()
   let timeLeft = {}
 
   if (difference > 0) {
@@ -20,22 +23,23 @@ function calculateTimeLeft(targetDate) {
   return timeLeft
 }
 
-export default function Countdown({ targetDate, onCountdownEnd }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate))
+export default function Countdown() {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const updated = calculateTimeLeft(targetDate)
+    const timer = setInterval(() => {
+      const updated = calculateTimeLeft()
+      setTimeLeft(updated)
 
-      setTimeLeft(updated)  
-      if (!updated || Object.keys(updated).length <= 0) {  
-        onCountdownEnd()  
-      }  
-    }, 1000)  
+      if (!updated || Object.keys(updated).length === 0) {
+        clearInterval(timer)
+        // Surprise page pe redirect
+        window.location.href = "/surprise"
+      }
+    }, 1000)
 
-    return () => clearTimeout(timer)
-
-  }, [timeLeft, targetDate])
+    return () => clearInterval(timer)
+  }, [])
 
   const icons = [
     <Heart key="heart" className="text-pink-500 fill-pink-200" />,
