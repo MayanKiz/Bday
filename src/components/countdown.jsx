@@ -54,75 +54,80 @@ export default function Countdown() {
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 p-4">
-      <motion.h1
-        className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 sm:min-h-11 mb-6"
-        initial={{ scale: 0.95 }}
-        animate={{ scale: 1 }}
-        transition={{
-          duration: 1.5,
-          repeat: Infinity,
-          repeatType: "mirror",
-          ease: "easeInOut",
-        }}
-      >
-        Your Special Day is Almost Here💕
-      </motion.h1>
-
-      <div className="flex flex-wrap justify-center gap-4 mb-8">
-        {Object.keys(timeLeft).length > 0 ? (
-          Object.entries(timeLeft).map(([unit, value], index) => (
-            <motion.div
-              key={unit}
-              className="bg-white rounded-3xl shadow-lg p-4 w-28 h-28 flex flex-col items-center justify-center border-2 border-pink-200 relative overflow-hidden"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.05, rotate: [-1, 1, -1, 0] }}
-            >
-              <div className="text-3xl font-bold text-purple-600">{value}</div>
-              <div className="text-sm text-pink-500 capitalize">{unit}</div>
-              <div className="mt-1">{icons[index % icons.length]}</div>
-            </motion.div>
-          ))
-        ) : (
-          <p className="text-2xl text-pink-600 font-bold">It's time!</p>
-        )}
-      </div>
-
-      {/* Premium Card */}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-purple-200 p-4 relative">
+      
+      {/* DP Circle at Top */}
       <motion.div
-        className="relative max-w-sm w-full aspect-[4/3] bg-white rounded-3xl shadow-2xl border-4 border-pink-200 overflow-hidden"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        className="absolute top-6 flex justify-center items-center w-40 h-40 rounded-full border-4 border-pink-300 shadow-2xl bg-gradient-to-tr from-pink-100 to-purple-200 overflow-hidden"
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8 }}
       >
         <img
           src="/retouch_2025032401183147.jpg"
           alt="Profile"
-          className="w-full h-2/3 object-cover"
+          className="w-full h-full object-cover"
         />
-        <div className="p-4 flex flex-col justify-between h-1/3">
-          <p className="text-lg text-purple-700 text-center font-semibold">
-            Just a little more... A small gift for my favorite person❤️
-          </p>
-          <div className="flex justify-center space-x-2 mt-2">
-            {Array.from({ length: 3 }).map((_, i) => (
+      </motion.div>
+
+      {/* Main Box */}
+      <motion.div
+        className="mt-48 bg-white rounded-3xl shadow-2xl border-4 border-pink-200 w-full max-w-md p-6 flex flex-col items-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <motion.h1
+          className="text-3xl md:text-4xl font-bold text-center text-pink-600 mb-6"
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+          }}
+        >
+          Your Special Day is Almost Here💕
+        </motion.h1>
+
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {Object.keys(timeLeft).length > 0 ? (
+            Object.entries(timeLeft).map(([unit, value], index) => (
               <motion.div
-                key={i}
-                className="w-3 h-3 rounded-full bg-pink-400"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: i * 0.3,
-                }}
-              />
-            ))}
-          </div>
+                key={unit}
+                className="bg-white rounded-3xl shadow-lg p-4 w-28 h-28 flex flex-col items-center justify-center border-2 border-pink-200"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                whileHover={{ scale: 1.05, rotate: [-1, 1, -1, 0] }}
+              >
+                <div className="text-3xl font-bold text-purple-600">{value}</div>
+                <div className="text-sm text-pink-500 capitalize">{unit}</div>
+                <div className="mt-1">{icons[index % icons.length]}</div>
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-2xl text-pink-600 font-bold">It's time!</p>
+          )}
+        </div>
+
+        <div className="flex justify-center space-x-2">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="w-3 h-3 rounded-full bg-pink-400"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.7, 1, 0.7],
+              }}
+              transition={{
+                duration: 1,
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.3,
+              }}
+            />
+          ))}
         </div>
       </motion.div>
 
