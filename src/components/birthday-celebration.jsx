@@ -1,14 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { Heart, Sparkles, Gift, Cake } from "lucide-react"
+import { Heart, Sparkles, Gift, Cake, Play } from "lucide-react"
 
 export default function BirthdayCelebration() {
   const [isCardOpen, setIsCardOpen] = useState(false)
+  const [showMoreButton, setShowMoreButton] = useState(false)
+  const [showVideo, setShowVideo] = useState(false)
+
+  // Delay for "More" button
+  useEffect(() => {
+    const timer = setTimeout(() => setShowMoreButton(true), 5000) // 5 seconds delay
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center relative">
       <motion.div
         initial={{ scale: 0, rotate: -10 }}
         animate={{ scale: 1, rotate: 0 }}
@@ -88,7 +96,7 @@ export default function BirthdayCelebration() {
             >
               <div className="text-center">
                 <p className="text-purple-700 mb-2">
-                Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
+                  Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
                 </p>
                 <p className="text-pink-600 font-medium">I hope your birthday is full of love, magic, and everything that makes you smile 💖</p>
                 <div className="flex justify-center">
@@ -118,13 +126,53 @@ export default function BirthdayCelebration() {
       >
         <div className="text-center">
           <p className="text-lg text-purple-700 mb-4">
-          May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
+            May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
           </p>
           <div className="flex justify-center items-center gap-2">
             <p className="text-pink-600 font-medium">Let’s always stay like this... together, forever 🫶</p>
           </div>
         </div>
       </motion.div>
+
+      {/* More Button */}
+      {showMoreButton && (
+        <motion.button
+          className="mt-6 px-6 py-3 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 transition duration-300 flex items-center gap-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          onClick={() => setShowVideo(true)}
+        >
+          <Play className="w-5 h-5" />
+          More
+        </motion.button>
+      )}
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {showVideo && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="relative w-11/12 max-w-lg bg-black rounded-lg overflow-hidden">
+              <button
+                className="absolute top-2 right-2 text-white text-xl"
+                onClick={() => setShowVideo(false)}
+              >
+                ✕
+              </button>
+              <video
+                src="/lv_7500596672121048373_20250507154449.mp4"
+                controls
+                autoPlay
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
