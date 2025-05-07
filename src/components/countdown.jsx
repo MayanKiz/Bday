@@ -4,8 +4,10 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
-function calculateTimeLeft(targetDate) {
-  const difference = targetDate - new Date("2025-05-07T16:08:00")
+const TARGET_DATE = new Date("2025-05-07T16:10:00")
+
+function calculateTimeLeft() {
+  const difference = TARGET_DATE - new Date()
   let timeLeft = {}
 
   if (difference > 0) {
@@ -20,21 +22,24 @@ function calculateTimeLeft(targetDate) {
   return timeLeft
 }
 
-export default function Countdown({ targetDate, onCountdownEnd }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate))
+export default function Countdown() {
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const updated = calculateTimeLeft(targetDate)
-
+    const timer = setInterval(() => {
+      const updated = calculateTimeLeft()
       setTimeLeft(updated)
-      if (!updated || Object.keys(updated).length <= 0) {
-        onCountdownEnd()
+
+      if (!updated || Object.keys(updated).length === 0) {
+        clearInterval(timer)
+        console.log("Countdown finished!")
+        // Yaha redirect karna ho toh:
+        // window.location.href = "/surprise"
       }
     }, 1000)
 
-    return () => clearTimeout(timer)
-  }, [timeLeft, targetDate])
+    return () => clearInterval(timer)
+  }, [])
 
   const icons = [
     <Heart key="heart" className="text-pink-500 fill-pink-200" />,
@@ -44,9 +49,9 @@ export default function Countdown({ targetDate, onCountdownEnd }) {
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-pink-100 to-purple-100">
       <motion.h1
-        className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 sm:min-h-11 mb-6"
+        className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 mb-6"
         initial={{ scale: 0.95 }}
         animate={{ scale: 1 }}
         transition={{
