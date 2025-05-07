@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
-const TARGET_DATE = new Date("2025-05-07T16:10:00")
+const TARGET_DATE = new Date("2025-05-07T16:14:00")
 
 function calculateTimeLeft() {
   const difference = TARGET_DATE - new Date()
@@ -14,7 +14,7 @@ function calculateTimeLeft() {
     timeLeft = {
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
+      minutes: Math.floor((difference / (1000 / 60)) % 60),
       seconds: Math.floor((difference / 1000) % 60),
     }
   }
@@ -22,24 +22,21 @@ function calculateTimeLeft() {
   return timeLeft
 }
 
-export default function Countdown() {
+export default function Countdown({ onCountdownEnd }) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
       const updated = calculateTimeLeft()
       setTimeLeft(updated)
 
-      if (!updated || Object.keys(updated).length === 0) {
-        clearInterval(timer)
-        console.log("Countdown finished!")
-        // Yaha redirect karna ho toh:
-        // window.location.href = "/surprise"
+      if (!updated || Object.keys(updated).length <= 0) {
+        onCountdownEnd()
       }
     }, 1000)
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearTimeout(timer)
+  }, [timeLeft])
 
   const icons = [
     <Heart key="heart" className="text-pink-500 fill-pink-200" />,
@@ -49,9 +46,9 @@ export default function Countdown() {
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-pink-100 to-purple-100">
+    <div className="flex flex-col items-center justify-center">
       <motion.h1
-        className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 mb-6"
+        className="text-3xl md:text-4xl font-bold text-center text-pink-600 min-h-20 sm:min-h-11 mb-6"
         initial={{ scale: 0.95 }}
         animate={{ scale: 1 }}
         transition={{
