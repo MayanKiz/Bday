@@ -1,18 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react" 
-import { AnimatePresence, motion } from "framer-motion" import { Heart, Sparkles, Gift, Cake, Play } from "lucide-react" import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react" import { AnimatePresence, motion } from "framer-motion" import { Heart, Sparkles, Gift, Cake, Play } from "lucide-react" import { useRouter } from "next/navigation"
 
-export default function BirthdayCelebration() { 
-const [isCardOpen, setIsCardOpen] = useState(false) const [showMoreButton, setShowMoreButton] = useState(false) 
-const [showVideo, setShowVideo] = useState(false) const [videoEnded, setVideoEnded] = useState(false) 
-const router = useRouter()
+export default function BirthdayCelebration() { const [isCardOpen, setIsCardOpen] = useState(false) const [showMoreButton, setShowMoreButton] = useState(false) const [showVideo, setShowVideo] = useState(false) const [videoEnded, setVideoEnded] = useState(false) const router = useRouter()
 
 useEffect(() => { const timer = setTimeout(() => setShowMoreButton(true), 5000) return () => clearTimeout(timer) }, [])
 
 const handleVideoEnd = () => { setVideoEnded(true) }
 
-const redirectToSpecialGift = () => { router.push("https://for-u-three.vercel.app/") }
+const handleRedirect = () => { router.push("https://for-u-three.vercel.app/") }
 
 return ( <div className="flex flex-col items-center relative"> <motion.div initial={{ scale: 0, rotate: -10 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }} className="relative mb-2" > <h1 className="text-4xl sm:text-5xl font-bold text-center text-pink-600 mb-2">Happy Birthday!</h1> <div className="flex justify-center gap-3"> <Cake className="w-8 h-8 text-pink-500" /> <Sparkles className="w-8 h-8 text-yellow-500" /> <Heart className="w-8 h-8 text-pink-500" /> </div> <h3 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 mt-2">To My Cutiepie</h3> </motion.div>
 
@@ -26,7 +22,9 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
       className={`relative cursor-pointer transition-all duration-700 ease-in-out transform ${isCardOpen ? "rotate-0" : "rotate-2"}`}
       onClick={() => setIsCardOpen(!isCardOpen)}
     >
-      <div className={`bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl p-14 sm:p-10 shadow-lg transition-all duration-700 transform ${isCardOpen ? "scale-95" : "scale-100"}`}>
+      <div
+        className={`bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl p-14 sm:p-10 shadow-lg transition-all duration-700 transform ${isCardOpen ? "scale-95" : "scale-100"}`}
+      >
         <div className="absolute top-2 right-2">
           <motion.div
             animate={{ rotate: 360 }}
@@ -96,7 +94,7 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
     </div>
   </motion.div>
 
-  {showMoreButton && !videoEnded && (
+  {showMoreButton && (
     <motion.button
       className="mt-6 px-6 py-3 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 transition duration-300 flex items-center gap-2"
       initial={{ opacity: 0, y: 20 }}
@@ -111,7 +109,7 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
   <AnimatePresence>
     {showVideo && (
       <motion.div
-        className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+        className="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center z-50"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -131,18 +129,17 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
             className="w-full h-auto"
           />
         </div>
+        {videoEnded && (
+          <button
+            className="mt-4 px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600"
+            onClick={handleRedirect}
+          >
+            Very Very Special Gift
+          </button>
+        )}
       </motion.div>
     )}
   </AnimatePresence>
-
-  {videoEnded && (
-    <button
-      className="mt-6 px-6 py-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition duration-300"
-      onClick={redirectToSpecialGift}
-    >
-      Very Very Special Gift
-    </button>
-  )}
 </div>
 
 ) }
