@@ -1,14 +1,18 @@
 "use client"
 
-import { useState, useEffect } from "react" import { AnimatePresence, motion } from "framer-motion" import { Heart, Sparkles, Gift, Cake, Play } from "lucide-react" import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react" 
+import { AnimatePresence, motion } from "framer-motion" import { Heart, Sparkles, Gift, Cake, Play } from "lucide-react" import { useRouter } from "next/navigation"
 
-export default function BirthdayCelebration() { const [isCardOpen, setIsCardOpen] = useState(false) const [showMoreButton, setShowMoreButton] = useState(false) const [showVideo, setShowVideo] = useState(false) const [videoEnded, setVideoEnded] = useState(false) const router = useRouter()
+export default function BirthdayCelebration() { 
+const [isCardOpen, setIsCardOpen] = useState(false) const [showMoreButton, setShowMoreButton] = useState(false) 
+const [showVideo, setShowVideo] = useState(false) const [videoEnded, setVideoEnded] = useState(false) 
+const router = useRouter()
 
 useEffect(() => { const timer = setTimeout(() => setShowMoreButton(true), 5000) return () => clearTimeout(timer) }, [])
 
 const handleVideoEnd = () => { setVideoEnded(true) }
 
-const handleRedirect = () => { router.push("https://for-u-three.vercel.app/") }
+const redirectToSpecialGift = () => { router.push("https://for-u-three.vercel.app/") }
 
 return ( <div className="flex flex-col items-center relative"> <motion.div initial={{ scale: 0, rotate: -10 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }} className="relative mb-2" > <h1 className="text-4xl sm:text-5xl font-bold text-center text-pink-600 mb-2">Happy Birthday!</h1> <div className="flex justify-center gap-3"> <Cake className="w-8 h-8 text-pink-500" /> <Sparkles className="w-8 h-8 text-yellow-500" /> <Heart className="w-8 h-8 text-pink-500" /> </div> <h3 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 mt-2">To My Cutiepie</h3> </motion.div>
 
@@ -22,9 +26,7 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
       className={`relative cursor-pointer transition-all duration-700 ease-in-out transform ${isCardOpen ? "rotate-0" : "rotate-2"}`}
       onClick={() => setIsCardOpen(!isCardOpen)}
     >
-      <div
-        className={`bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl p-14 sm:p-10 shadow-lg transition-all duration-700 transform ${isCardOpen ? "scale-95" : "scale-100"}`}
-      >
+      <div className={`bg-gradient-to-r from-pink-400 to-purple-500 rounded-3xl p-14 sm:p-10 shadow-lg transition-all duration-700 transform ${isCardOpen ? "scale-95" : "scale-100"}`}>
         <div className="absolute top-2 right-2">
           <motion.div
             animate={{ rotate: 360 }}
@@ -57,8 +59,12 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
             transition={{ duration: 0.5 }}
           >
             <div className="text-center">
-              <p className="text-purple-700 mb-2">Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.</p>
-              <p className="text-pink-600 font-medium">I hope your birthday is full of love, magic, and everything that makes you smile 💖</p>
+              <p className="text-purple-700 mb-2">
+                Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
+              </p>
+              <p className="text-pink-600 font-medium">
+                I hope your birthday is full of love, magic, and everything that makes you smile 💖
+              </p>
               <div className="flex justify-center">
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
@@ -74,9 +80,16 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
     </div>
   </motion.div>
 
-  <motion.div className="w-full max-w-md mt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }}>
+  <motion.div
+    className="w-full max-w-md mt-4"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ delay: 1 }}
+  >
     <div className="text-center">
-      <p className="text-lg text-purple-700 mb-4">May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.</p>
+      <p className="text-lg text-purple-700 mb-4">
+        May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
+      </p>
       <div className="flex justify-center items-center gap-2">
         <p className="text-pink-600 font-medium">Let’s always stay like this... together, forever 🫶</p>
       </div>
@@ -114,8 +127,8 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
             src="/lv_7500596672121048373_20250507154449.mp4"
             controls
             autoPlay
-            className="w-full h-auto"
             onEnded={handleVideoEnd}
+            className="w-full h-auto"
           />
         </div>
       </motion.div>
@@ -123,14 +136,12 @@ return ( <div className="flex flex-col items-center relative"> <motion.div initi
   </AnimatePresence>
 
   {videoEnded && (
-    <motion.button
+    <button
       className="mt-6 px-6 py-3 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      onClick={handleRedirect}
+      onClick={redirectToSpecialGift}
     >
       Very Very Special Gift
-    </motion.button>
+    </button>
   )}
 </div>
 
