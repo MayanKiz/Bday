@@ -80,8 +80,9 @@ export default function BirthdayCelebration() {
   // Check if video has ended from localStorage on component mount
   useEffect(() => {
     const hasVideoEnded = localStorage.getItem('birthdayVideoEnded') === 'true';
-    if (hasVideoEnded) {
+    if (hasVideoEnded && !showVideo) {
       setVideoEnded(true);
+      setShowVideo(true);
     }
   }, []);
 
@@ -275,12 +276,12 @@ export default function BirthdayCelebration() {
               </div>
             </div>  
             
-            {/* Special Gift Button - Now with glowing effect */}
+            {/* Special Gift Button - Positioned below video with glowing effect */}
             {videoEnded && (  
               <motion.div
-                className="fixed bottom-8 right-8 z-50"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                className="mt-6 relative z-50"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
               >
                 {/* Outer glowing ring */}
                 <motion.div 
@@ -318,7 +319,7 @@ export default function BirthdayCelebration() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   animate={{
-                    y: [0, -5, 0],
+                    y: [0, -3, 0],
                   }}
                   transition={{
                     y: {
