@@ -80,9 +80,8 @@ export default function BirthdayCelebration() {
   // Check if video has ended from localStorage on component mount
   useEffect(() => {
     const hasVideoEnded = localStorage.getItem('birthdayVideoEnded') === 'true';
-    if (hasVideoEnded && !showVideo) {
+    if (hasVideoEnded) {
       setVideoEnded(true);
-      setShowVideo(true);
     }
   }, []);
 
@@ -276,72 +275,17 @@ export default function BirthdayCelebration() {
               </div>
             </div>  
             
-            {/* Special Gift Button - Positioned below video with glowing effect */}
             {videoEnded && (  
-              <motion.div
-                className="mt-6 relative z-50"
+              <motion.button  
+                className="mt-4 px-6 py-3 bg-green-500 text-white rounded-full hover:bg-green-600 shadow-lg"  
+                onClick={handleRedirect}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-              >
-                {/* Outer glowing ring */}
-                <motion.div 
-                  className="absolute inset-0 rounded-full bg-green-400 opacity-70 blur-md"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.4, 0.7, 0.4]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "reverse"
-                  }}
-                />
-                
-                {/* Second glow ring */}
-                <motion.div 
-                  className="absolute inset-0 rounded-full bg-yellow-300 opacity-50 blur-sm"
-                  animate={{ 
-                    scale: [1.1, 1.3, 1.1],
-                    opacity: [0.3, 0.5, 0.3]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    delay: 0.5
-                  }}
-                />
-                
-                {/* The actual button */}
-                <motion.button  
-                  className="relative px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-full shadow-lg border-2 border-green-300"
-                  onClick={handleRedirect}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{
-                    y: [0, -3, 0],
-                  }}
-                  transition={{
-                    y: {
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatType: "reverse"
-                    }
-                  }}
-                >  
-                  <span className="drop-shadow-lg">Very Very Special Gift</span>
-                  <motion.span 
-                    className="absolute inset-0 rounded-full bg-white opacity-20"
-                    animate={{ 
-                      opacity: [0.1, 0.3, 0.1] 
-                    }}
-                    transition={{ 
-                      duration: 1, 
-                      repeat: Infinity 
-                    }}
-                  />
-                </motion.button>
-              </motion.div>
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >  
+                Very Very Special Gift  
+              </motion.button>  
             )}  
           </motion.div>  
         )}  
