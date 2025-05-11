@@ -69,11 +69,21 @@ export default function BirthdayCelebration() {
 
   const handleVideoEnd = () => {
     setVideoEnded(true);
+    // Store in local storage that video has ended
+    localStorage.setItem('birthdayVideoEnded', 'true');
   };
 
   const handleRedirect = () => {
     router.push("https://for-u-three.vercel.app/");
   };
+  
+  // Check if video has ended from localStorage on component mount
+  useEffect(() => {
+    const hasVideoEnded = localStorage.getItem('birthdayVideoEnded') === 'true';
+    if (hasVideoEnded) {
+      setVideoEnded(true);
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center relative">
