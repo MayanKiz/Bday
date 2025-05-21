@@ -211,16 +211,7 @@ export default function BirthdayCelebration() {
             exit={{ opacity: 0 }}  
           >  
             <div className="relative w-11/12 max-w-lg bg-black rounded-lg overflow-hidden">  
-              <motion.button  
-                className="absolute top-2 right-2 text-white text-xl z-20 bg-red-500 rounded-full w-8 h-8 flex items-center justify-center shadow-lg"  
-                onClick={() => setShowVideo(false)}
-                initial={{ scale: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                style={{ position: 'fixed' }}
-              >  
-                ✕  
-              </motion.button>
+             
               
               <div className="relative">
                 {/* Confetti background for video */}
