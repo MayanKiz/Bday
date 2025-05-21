@@ -256,7 +256,7 @@ export default function BirthdayCelebration() {
                 </div>
                 
                 <video  
-                  src="/lv_7500596672121048373_20250507154449.mp4"  
+                  src="/lv_7493218243914632501_20250508140220"  
                   controls  
                   autoPlay  
                   onEnded={handleVideoEnd}  
