@@ -13,6 +13,7 @@ function Loader() {
     }));
     setRandomPositions(positions);
   }, []);
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-rose-100 to-purple-100 overflow-hidden">
       {/* Floating background hearts */}
@@ -41,15 +42,15 @@ function Loader() {
           >
             {i % 5 === 0 ? (
               <Star
-                className={`w-${4 + (i % 4)} h-${4 + (i % 4)} text-yellow-300 fill-yellow-100 opacity-70`}
+                className={`w-4 h-4 text-yellow-300 fill-yellow-100 opacity-70`}
               />
             ) : i % 5 === 1 ? (
               <Sparkles
-                className={`w-${4 + (i % 4)} h-${4 + (i % 4)} text-purple-300 opacity-70`}
+                className={`w-4 h-4 text-purple-300 opacity-70`}
               />
             ) : (
               <Heart
-                className={`w-${4 + (i % 4)} h-${4 + (i % 4)} ${i % 3 === 0
+                className={`w-4 h-4 ${i % 3 === 0
                     ? "text-pink-300"
                     : i % 3 === 1
                       ? "text-pink-400"
@@ -68,6 +69,64 @@ function Loader() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
+        {/* Profile Photo - ADD THIS SECTION */}
+        <motion.div
+          className="relative mb-6"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* Animated ring around photo */}
+          <motion.div
+            className="absolute inset-0 rounded-full bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 p-1"
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              duration: 4,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+          >
+            <div className="w-24 h-24 rounded-full bg-white p-1">
+              <img
+                src="https://images.pexels.com/photos/32330322/pexels-photo-32330322.jpeg?auto=compress&cs=tinysrgb&w=400"
+                alt="Profile"
+                className="w-full h-full rounded-full object-cover"
+                onError={(e) => {
+                  // Fallback image if Pexels URL doesn't work
+                  e.target.src = "https://via.placeholder.com/400x400/ff69b4/ffffff?text=❤️";
+                }}
+              />
+            </div>
+          </motion.div>
+          
+          {/* Floating hearts around photo */}
+          {Array.from({ length: 4 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute"
+              style={{
+                top: i === 0 ? "-10px" : i === 1 ? "50%" : i === 2 ? "calc(100% + 10px)" : "50%",
+                left: i === 0 ? "50%" : i === 1 ? "-10px" : i === 2 ? "50%" : "calc(100% + 10px)",
+                transform: "translate(-50%, -50%)",
+              }}
+              animate={{
+                y: [0, -8, 0],
+                scale: [1, 1.2, 1],
+                rotate: [0, 10, -10, 0],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                delay: i * 0.3,
+              }}
+            >
+              <Heart className="w-4 h-4 text-pink-400 fill-pink-200" />
+            </motion.div>
+          ))}
+        </motion.div>
+
         {/* Bouncing hearts */}
         <div className="flex justify-center space-x-3 mb-5">
           {Array.from({ length: 3 }).map((_, i) => (
@@ -84,7 +143,7 @@ function Loader() {
               }}
             >
               <Heart
-                className={`w-8 h-8 ${i === 0
+                className={`w-6 h-6 ${i === 0
                   ? "text-pink-400 fill-pink-200"
                   : i === 1
                     ? "text-pink-500 fill-pink-300"
@@ -101,7 +160,7 @@ function Loader() {
             scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 2,
+            duration: 5,
             repeat: Number.POSITIVE_INFINITY,
           }}
         >
