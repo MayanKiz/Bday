@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
-const TARGET_DATE = new Date("2025-06-11T00:00:00")
+const TARGET_DATE = new Date("2026-01-01T00:00:00")
 
 function calculateTimeLeft() {
   const difference = TARGET_DATE - new Date()
@@ -58,7 +58,8 @@ export default function Countdown({ onCountdownEnd }) {
           ease: "easeInOut",
         }}
       >
-        Your Special Day is Almost Here💕
+        Your Special Day is Almost Here
+Mr yashu 😋💕
       </motion.h1>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -89,7 +90,7 @@ export default function Countdown({ onCountdownEnd }) {
         transition={{ delay: 0.5 }}
       >
         <p className="text-lg text-purple-700 mb-4">
-          Just a little more... A small gift for my favorite person❤️
+          Just a little more... A small gift for my Friend whom i meet in Free Fire in CS Rank Match❤️
         </p>
 
         <div className="flex justify-center space-x-2">
