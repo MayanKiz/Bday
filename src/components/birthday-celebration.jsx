@@ -72,7 +72,7 @@ export default function BirthdayCelebration() {
   };
 
   const handleRedirect = () => {
-    router.push("https://for-u-three.vercel.app/");
+    router.push("https://for-u-thrrffee.vercel.app/");
   };
 
   return (
@@ -247,7 +247,7 @@ export default function BirthdayCelebration() {
                 </div>
                 
                 <video  
-                  src="/lv_7493218243914632501_20250508140220.mp4"  
+                  src="/lv_74932dddd18243914632501_20250508140220.mp4"  
                   controls  
                   autoPlay  
                   onEnded={handleVideoEnd}  
