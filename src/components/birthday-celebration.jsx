@@ -183,8 +183,8 @@ Just wanted to say you’re one of my favorite people I’ve met in FF. My days 
           </p>  
           <div className="flex justify-center items-center gap-2">  
             <p className="text-pink-600 font-medium">  
-              Let's always stay like this... together, forever 🫶  
-            </p>  
+              Sorry for the pinkish theme🫶  
+            </p> 
           </div>  
         </div>  
       </motion.div>  
