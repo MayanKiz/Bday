@@ -90,7 +90,7 @@ Mr yashu 😋💕
         transition={{ delay: 0.5 }}
       >
         <p className="text-lg text-purple-700 mb-4">
-          Just a little more... A small gift for my Friend whom i meet in Free Fire in CS Rank Match❤️
+          Just a little more... A small gift for my Friend whom i meet in lone wolf match in free fire...❤️
         </p>
 
         <div className="flex justify-center space-x-2">
