@@ -105,7 +105,7 @@ function Loader() {
             repeat: Number.POSITIVE_INFINITY,
           }}
         >
-          Loading something special...Pookie Yash😁
+          Loading something special...Mr Yash Kumar😁
         </motion.p>
 
         {/* Cute emojis */}
