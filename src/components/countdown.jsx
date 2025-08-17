@@ -59,7 +59,7 @@ export default function Countdown({ onCountdownEnd }) {
         }}
       >
         Your Special Day is Almost Here
-Mr yashu 😋💕
+Mr Nipul jii😋💕
       </motion.h1>
 
       <div className="flex flex-wrap justify-center gap-4 mb-8">
