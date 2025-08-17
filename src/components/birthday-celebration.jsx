@@ -150,10 +150,11 @@ export default function BirthdayCelebration() {
               >  
                 <div className="text-center">  
                   <p className="text-purple-700 mb-2">  
-                    Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.  
+                    "Happy Birthday bro 🎉🔥!
+Just wanted to say you’re one of my favorite people I’ve met in FF. My days feel better, my smiles wider, and gaming life sweeter because of you. The gift you gave me means a lot, but honestly your friendship is the real gift. May this year bring you more victories, more happiness, and endless headshots 💯🎮. Stay blessed always, enjoy your day to the fullest 🥳❤️.
                   </p>  
                   <p className="text-pink-600 font-medium">  
-                    I hope your birthday is full of love, magic, and everything that makes you smile 💖  
+                    आशा बा कि राउर जन्मदिन प्यार, जादू, आ हर ओह चीज से भरल होई जवन रउरा के मुस्कुरा देला 💖  
                   </p>  
                   <div className="flex justify-center">  
                     <motion.div  
@@ -247,7 +248,7 @@ export default function BirthdayCelebration() {
                 </div>
                 
                 <video  
-                  src="/lv_74932dddd18243914632501_20250508140220.mp4"  
+                  src="/lv_74932d18243914632501_20250508140220.mp4"  
                   controls  
                   autoPlay  
                   onEnded={handleVideoEnd}  
@@ -265,7 +266,7 @@ export default function BirthdayCelebration() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >  
-                💗Click Here Dude💗
+                
               </motion.button>  
             )}  
           </motion.div>  
