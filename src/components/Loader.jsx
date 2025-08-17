@@ -120,9 +120,9 @@ function Loader() {
                 y: [0, -5, 0],
               }}
               transition={{
-                duration: 2,
+                duration: 5,
                 repeat: Number.POSITIVE_INFINITY,
-                delay: i * 0.2,
+                delay: i * 2,
               }}
             >
               {emoji}
