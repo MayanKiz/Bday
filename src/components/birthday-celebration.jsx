@@ -59,22 +59,7 @@ export default function BirthdayCelebration() {
   }, []);
 
   useEffect(() => {
-    // Stop confetti when video is playing
-    if (showVideo) {
-      setShowConfetti(false);
-    } else {
-      setShowConfetti(true);
-    }
-  }, [showVideo]);
-
-  const handleVideoEnd = () => {
-    setVideoEnded(true);
-  };
-
-  const handleRedirect = () => {
-    router.push("https://for-u-thrrffee.vercel.app/");
-  };
-
+    
   return (
     <div className="flex flex-col items-center relative">
       <Confetti isActive={showConfetti} />
@@ -94,7 +79,7 @@ export default function BirthdayCelebration() {
           <Heart className="w-8 h-8 text-pink-500" />
         </div>
         <h3 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 mt-2">
-          To My Cutiepie
+          To My Friend 💙
         </h3>
       </motion.div>
 
