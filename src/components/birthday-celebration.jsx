@@ -88,7 +88,8 @@ export default function BirthdayCelebration() {
             >
               <div className="text-center">
                 <p className="text-purple-700 mb-2">
-                Just wanted to remind you—you're my favorite person. My days are better, smiles are wider, and life is sweeter because of you.
+                May this year bring more
+                   happiness in game as well as in life also 💯🎮
                 </p>
                 <p className="text-pink-600 font-medium">आशा बा कि राउर जन्मदिन प्यार, जादू, आ हर ओह चीज से भरल होई  
               जवन रउरा के मुस्कुरा देला 💖  💖</p>
@@ -120,6 +121,12 @@ export default function BirthdayCelebration() {
         <div className="text-center">
           <p className="text-lg text-purple-700 mb-4">
           May every wish you make today come true. You deserve the world, and I’ll always be here to remind you of that.
+Just wanted to say you’re one of my
+                    favorite people I’ve met in FF. My days feel better
+                  and gaming life sweeter because of you. The                    gift you gave me [ID] means a lot, but honestly a boy like you also a big 
+                    and the real gift whom a girl can't achive.... May this year bring you more victories,in game as well as in life...with
+                    more happiness, and endless headshots 💯🎮. Stay blessed
+                    always, enjoy your day to the fullest 🥳❤️.
           </p>
           <div className="flex justify-center items-center gap-2">
             <p className="text-pink-600 font-medium">Let’s always stay like this...  🫶</p>
