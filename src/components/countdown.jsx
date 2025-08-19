@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Heart, Gift, Cake, Star } from "lucide-react"
 
 function calculateTimeLeft(targetDate) {
-  const difference = targetDate - new Date("2025-08-20T00:00:00")
+  const difference = targetDate - new Date()
   let timeLeft = {}
 
   if (difference > 0) {
@@ -20,16 +20,19 @@ function calculateTimeLeft(targetDate) {
   return timeLeft
 }
 
-export default function Countdown({ targetDate, onCountdownEnd }) {
+export default function Countdown({ onCountdownEnd }) {
+  // ✅ Kal ki fixed date (20 Aug 2025)
+  const targetDate = new Date("2025-08-20T00:00:00")
+
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(targetDate))
 
   useEffect(() => {
     const timer = setTimeout(() => {
       const updated = calculateTimeLeft(targetDate)
-
       setTimeLeft(updated)
+
       if (!updated || Object.keys(updated).length <= 0) {
-        onCountdownEnd()
+        onCountdownEnd?.()
       }
     }, 1000)
 
