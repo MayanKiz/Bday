@@ -1,26 +1,18 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* src/app/globals.css */
+.bg-glass {
+  background: rgba(29, 49, 80, 0.5);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255,255,255,0.25);
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.neon-btn {
+  color: #fff;
+  background: linear-gradient(90deg, #0051ff 0%, #00f6ff 100%);
+  box-shadow: 0 0 12px #008cff, 0 0 40px #00f6ff inset;
+  border-radius: 12px;
+  transition: box-shadow 0.3s;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Shantell Sans", cursive;
+.neon-btn:hover {
+  box-shadow: 0 0 24px #00ffe7, 0 0 60px #0051ff inset;
+  scale: 1.08;
 }
