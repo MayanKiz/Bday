@@ -4,8 +4,8 @@ import axios from 'axios';
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ message: 'Method Not Allowed' });
   const { name, score } = req.body || {};
-  const botToken = process.env.7471112121:AAHXaDVEV7dQTBdpP38OBvytroRUSu-2jYo;
-  const chatId = process.env.7643222418;
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!botToken || !chatId) return res.status(500).json({ success: false, message: 'Missing Telegram config' });
 
   try {
